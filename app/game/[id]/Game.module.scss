@@ -1,0 +1,70 @@
+.main {
+  background-color: black;
+}
+.game {
+  padding: 40px;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  .title {
+    font-weight: 900;
+    font-size: 27px;
+  }
+  .chat {
+    background-color: #fff;
+    max-width: 300px;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .messages {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+    margin: 15px 0;
+    .message {
+      background-color: #ece4e4;
+      padding: 5px;
+      border-radius: 8px;
+      .name {
+        font-weight: 900;
+      }
+    }
+  }
+
+  .input {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    .field {
+      padding: 7px 5px 7px 8px;
+      flex-grow: 1;
+      width: 100%;
+      border-radius: 8px;
+      font-size: 17px;
+    }
+    .send {
+      background: linear-gradient(-45deg, #8d0bff 0%, #ff0ae2 100%);
+      padding: 5px;
+      border-radius: 8px;
+      transition: all 150ms ease-in-out;
+      &:hover {
+        opacity: 0.8;
+      }
+      &:active {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .canvas {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+  }
+}

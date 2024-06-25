@@ -1,0 +1,47 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  color: #333333;
+}
+.main {
+  flex-grow: 1;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
