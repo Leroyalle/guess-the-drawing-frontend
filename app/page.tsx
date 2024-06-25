@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './Home.module.scss';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -9,7 +10,9 @@ export default function Home() {
         <p className={styles.subtitle}>
           Сыграй с друзьями! <br /> Догадаются ли они о чем ты думаешь?
         </p>
-        <button className={styles.startGameButton}>Создать игру</button>
+        <Link href="/game/1" className={styles.startGameButton}>
+          Создать игру
+        </Link>
       </div>
     </main>
   );

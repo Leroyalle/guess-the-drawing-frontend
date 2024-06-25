@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './Game.module.scss';
+import { Canvas } from '@/app/components/Canvas';
 
 export default function Game() {
   return (
@@ -15,13 +16,12 @@ export default function Game() {
           </div>
           <div className={styles.input}>
             <input type="text" className={styles.field} />
-
             <button className={styles.send}>Отправить</button>
           </div>
         </div>
 
         <div className={styles.canvas}>
-          <div id="paint" />
+          <Canvas />
         </div>
       </div>
     </main>
