@@ -6,12 +6,19 @@ import React from 'react';
 
 export default function Game() {
   const socketRef = React.useRef<Socket>();
+  const canvasCtxRef = React.useRef<CanvasRenderingContext2D>();
 
   React.useEffect(() => {
     socketRef.current = io('http://localhost:5555');
 
-    socketRef.current.on('paint', (data) => {
-      console.log(data);
+    socketRef.current.on('repaint', ({ x, y, dx, dy }) => {
+      if (canvasCtxRef.current) {
+        canvasCtxRef.current.beginPath();
+        canvasCtxRef.current.moveTo(x, y);
+        canvasCtxRef.current.lineTo(x - dx, y - dy);
+        canvasCtxRef.current.stroke();
+        canvasCtxRef.current.closePath();
+      }
     });
   }, []);
   const onPaint = (data: PaintCoords) => {
@@ -37,7 +44,7 @@ export default function Game() {
         </div>
 
         <div className={styles.canvas}>
-          <Canvas onPaint={onPaint} />
+          <Canvas onPaint={onPaint} onInit={(canvasCtx) => (canvasCtxRef.current = canvasCtx)} />
         </div>
       </div>
     </main>

@@ -11,9 +11,10 @@ export type PaintCoords = {
 
 type TCanvas = {
   onPaint: (data: PaintCoords) => void;
+  onInit: (ref: CanvasRenderingContext2D) => void;
 };
 
-export const Canvas: React.FC<TCanvas> = ({ onPaint }) => {
+export const Canvas: React.FC<TCanvas> = function Canvas({ onPaint, onInit }) {
   const rootRef = React.useRef<HTMLCanvasElement | null>(null);
 
   React.useEffect(() => {
@@ -21,6 +22,7 @@ export const Canvas: React.FC<TCanvas> = ({ onPaint }) => {
       const canvas = document.getElementById('canvas');
       const ctx = rootRef.current.getContext('2d');
       if (ctx) {
+        onInit(ctx);
         rootRef.current.width = 1000;
         rootRef.current.height = 600;
         ctx.lineCap = 'round';
