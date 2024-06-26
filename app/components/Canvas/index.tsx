@@ -2,7 +2,18 @@
 import React from 'react';
 import styles from './Canvas.module.scss';
 
-export const Canvas: React.FC = () => {
+export type PaintCoords = {
+  x: number;
+  y: number;
+  dx: number;
+  dy: number;
+};
+
+type TCanvas = {
+  onPaint: (data: PaintCoords) => void;
+};
+
+export const Canvas: React.FC<TCanvas> = ({ onPaint }) => {
   const rootRef = React.useRef<HTMLCanvasElement | null>(null);
 
   React.useEffect(() => {
@@ -25,12 +36,12 @@ export const Canvas: React.FC = () => {
           const dy = e.movementY;
 
           if (e.buttons > 0) {
-            console.log(1111);
             ctx.beginPath();
             ctx.moveTo(x, y);
             ctx.lineTo(x - dx, y - dy);
             ctx.stroke();
             ctx.closePath();
+            onPaint({ x, y, dy, dx });
           }
         });
       }

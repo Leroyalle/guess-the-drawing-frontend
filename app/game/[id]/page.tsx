@@ -1,8 +1,24 @@
-import Image from 'next/image';
+'use client';
 import styles from './Game.module.scss';
-import { Canvas } from '@/app/components/Canvas';
+import { Canvas, PaintCoords } from '@/app/components/Canvas';
+import { Socket, io } from 'socket.io-client';
+import React from 'react';
 
 export default function Game() {
+  const socketRef = React.useRef<Socket>();
+
+  React.useEffect(() => {
+    socketRef.current = io('http://localhost:5555');
+
+    socketRef.current.on('paint', (data) => {
+      console.log(data);
+    });
+  }, []);
+  const onPaint = (data: PaintCoords) => {
+    if (socketRef.current) {
+      socketRef.current.emit('paint', data);
+    }
+  };
   return (
     <main className={styles.main}>
       <div className={styles.game}>
@@ -21,7 +37,7 @@ export default function Game() {
         </div>
 
         <div className={styles.canvas}>
-          <Canvas />
+          <Canvas onPaint={onPaint} />
         </div>
       </div>
     </main>
